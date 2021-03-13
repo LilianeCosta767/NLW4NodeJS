@@ -1,7 +1,8 @@
-import express from 'express';
+import express from "express";
+import './database';
+import { router } from "./routes";
 
 const app = express();
-
 
 
 /*
@@ -12,14 +13,7 @@ const app = express();
     PATCH => alteração específica (só uma alteração, uma imagem, uma descrição, enfim)
 */
 
-app.get("/", (request, response) => {
-    return response.json({message: "Hello World - NLW 04"});
-});
-
-app.post("/", (request, response) => {
-    // recebeu os dados para salvar
-    return response.json({message: "Os dados foram salvos com sucesso!"});
-});
-
+app.use(express.json());
+app.use(router);
 
 app.listen(3333, () => console.log("Server is running! "));
